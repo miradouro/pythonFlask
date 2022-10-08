@@ -25,12 +25,12 @@
                 Filmes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{url_for('filmes')}}">Populares</a></li>
-                <li><a class="dropdown-item" href="{{url_for('kids')}}">Kids</a></li>
-                <li><a class="dropdown-item" href="{{url_for('f2010')}}">2010</a></li>
-                <li><a class="dropdown-item" href="{{url_for('drama')}}">Drama</a></li>
+                <li><a class="dropdown-item" href="{{url_for('filmes', propriedade='populares')}}">Populares</a></li>
+                <li><a class="dropdown-item" href="{{url_for('filmes', propriedade='kids')}}">Kids</a></li>
+                <li><a class="dropdown-item" href="{{url_for('filmes', propriedade='2010')}}">2010</a></li>
+                <li><a class="dropdown-item" href="{{url_for('filmes', propriedade='drama')}}">Drama</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="{{url_for('bradpitt')}}">Brad Pitt</a></li>
+                <li><a class="dropdown-item" href="{{url_for('filmes', propriedade='bradpitt')}}">Brad Pitt</a></li>
               </ul>
             </li>
             <li class="nav-item">

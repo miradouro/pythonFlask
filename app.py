@@ -27,49 +27,23 @@ def sobre():
     return render_template("sobre.html", registros=registros)
 
 
-@app.route('/filmes')
-def filmes():
-    url = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9064c6b20e001de09c9440faa6d1f822"
+@app.route('/filmes/<propriedade>')
+def filmes(propriedade):
+    if propriedade == 'populares':
+        url = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9064c6b20e001de09c9440faa6d1f822"
+    elif propriedade == 'kids':
+        url = "https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=9064c6b20e001de09c9440faa6d1f822"
+    elif propriedade == '2010':
+        url = "https://api.themoviedb.org/3/discover/movie?primary_release_year=2010&sort_by=vote_average.desc&api_key=9064c6b20e001de09c9440faa6d1f822"
+    elif propriedade == 'drama':
+        url = "https://api.themoviedb.org/3/discover/movie?with_genres=18&primary_release_year=2014&api_key=9064c6b20e001de09c9440faa6d1f822"
+    elif propriedade == 'bradpitt':
+        url = "https://api.themoviedb.org/3/discover/movie?with_people=287,819&sort_by=vote_average.desc&api_key=9064c6b20e001de09c9440faa6d1f822"
+
     resposta = urllib.request.urlopen(url)
     dados = resposta.read()
     jsondata = json.loads(dados)
     return render_template("filmes.html", filmes=jsondata['results'])
-
-
-@app.route('/kids')
-def kids():
-    url = "https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=9064c6b20e001de09c9440faa6d1f822"
-    resposta = urllib.request.urlopen(url)
-    dados = resposta.read()
-    jsondata = json.loads(dados)
-    return render_template("kids.html", filmes=jsondata['results'])
-
-
-@app.route('/f2010')
-def f2010():
-    url = "https://api.themoviedb.org/3/discover/movie?primary_release_year=2010&sort_by=vote_average.desc&api_key=9064c6b20e001de09c9440faa6d1f822"
-    resposta = urllib.request.urlopen(url)
-    dados = resposta.read()
-    jsondata = json.loads(dados)
-    return render_template("f2010.html", filmes=jsondata['results'])
-
-
-@app.route('/drama')
-def drama():
-    url = "https://api.themoviedb.org/3/discover/movie?with_genres=18&primary_release_year=2014&api_key=9064c6b20e001de09c9440faa6d1f822"
-    resposta = urllib.request.urlopen(url)
-    dados = resposta.read()
-    jsondata = json.loads(dados)
-    return render_template("drama.html", filmes=jsondata['results'])
-
-
-@app.route('/bradpitt')
-def bradpitt():
-    url = "https://api.themoviedb.org/3/discover/movie?with_people=287,819&sort_by=vote_average.desc&api_key=9064c6b20e001de09c9440faa6d1f822"
-    resposta = urllib.request.urlopen(url)
-    dados = resposta.read()
-    jsondata = json.loads(dados)
-    return render_template("bradpitt.html", filmes=jsondata['results'])
 
 
 if __name__ == '__main__':
