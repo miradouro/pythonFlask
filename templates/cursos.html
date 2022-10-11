@@ -4,7 +4,7 @@
 <br>
 <h2 style="text-align: center">Lista de Cursos</h2>
 <br>
-<a href="{{url_for('cria_curso')}}" class="btn btn-secondary">Novo</a>
+<a href="{{url_for('cria_curso')}}" class="btn btn-primary">Novo</a>
 <br><br>
 <table class="table table-bordered table-hover">
   <thead class="table-dark">
@@ -13,6 +13,7 @@
       <th scope="col">Nome</th>
       <th scope="col">Descrição</th>
       <th scope="col">CH</th>
+      <th scope="col" style="text-align: center;">Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,10 @@
       <td>{{curso.nome}}</td>
       <td>{{curso.descricao}}</td>
       <td>{{curso.ch}}</td>
+      <td style="text-align: center;">
+        <a href="{{curso.id}}/atualiza_curso" class="btn btn-warning btn-xs">Editar</a>
+        <a href="{{curso.id}}/remove_curso" onclick="return confirm('Deseja excluir esse registro?')" class="btn btn-danger btn-xs">Ecluir</a>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
